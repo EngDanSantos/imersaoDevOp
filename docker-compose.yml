@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      # Monta o diretório atual no container para habilitar o hot-reload
+      # e persistir o banco de dados SQLite no host.
+      - .:/app
+    command: uvicorn app:app --host 0.0.0.0 --port 8000 --reload
